@@ -1,0 +1,31 @@
+{
+ "libs": [
+  "browser"
+ ],
+ "loadEagerly": [
+  "src/**/*.js"
+ ],
+ "plugins": {
+  "node": {},
+  "modules": {},
+  "es_modules": {},
+   "webpack": {
+     "configPath": "./webpack.common.js"
+   },
+  "doc_comment": {
+   "fullDocs": true,
+   "strong": true
+  },
+  "complete_strings": {
+   "maxLength": 15
+  }
+ },
+ "dontLoad": [
+  "node_modules/**",
+  "node_modules_custom/**",
+  ".vscode/**",
+  ".git/**",
+  "dist/**"
+ ],
+ "ecmaVersion": 7
+}
