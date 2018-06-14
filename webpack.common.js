@@ -36,7 +36,7 @@ module.exports = {
                 loader: "file-loader",
                 options: {
                     name: "[name].[ext]",
-                    publicPath: "../", // override the default path
+                    publicPath: "../fonts/", // override the default path
                     outputPath: "fonts/",
                     limit: 10 * 1024,
                 },
@@ -46,7 +46,7 @@ module.exports = {
                 loader: "file-loader",
                 options: {
                     name: "[name].[ext]",
-                    publicPath: "../",
+                    publicPath: "../images/",
                     outputPath: "images/",
                 },
             },
@@ -64,8 +64,8 @@ module.exports = {
                                         browsers: ["last 2 versions", "not ie < 11"],
                                     },
                                     modules: false,
-                                    debug: true,
-                                    useBuiltins: "usage",
+                                    debug: false,
+                                    // useBuiltins: "usage",
                                     // exclude: ["transform-regenerator"],
                                 },
                             ],

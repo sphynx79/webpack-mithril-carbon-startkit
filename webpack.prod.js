@@ -1,5 +1,6 @@
 const merge = require("webpack-merge")
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const CleanWebpackPlugin = require("clean-webpack-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
@@ -8,30 +9,42 @@ const common = require("./webpack.common.js")
 
 module.exports = merge(common, {
     mode: "production",
-    devtool: "hidden-source-map",
     module: {
-        noParse: /(mapbox-gl)\.js$/,
         rules: [
             {
                 test: /(\.css|\.scss)$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: [
-                        {
-                            loader: "css-loader",
-                            options: {
-                                minimize: true,
-                            },
-                        },
-                        "postcss-loader",
-                        "sass-loader",
-                    ],
-                }),
+                use: [
+                    ExtractCssChunks.loader,
+                    { loader: "css-loader", options: { sourceMap: false } },
+                    { loader: "postcss-loader", options: { sourceMap: false } },
+                    { loader: "sass-loader", options: { sourceMap: false, modules: true } },
+                ],
             },
         ],
     },
     optimization: {
         nodeEnv: "production",
+        minimizer: [
+            new UglifyJSPlugin({
+                cache: true,
+                parallel: true,
+                sourceMap: false,
+                uglifyOptions: {
+                    ecma: 8,
+                    ie8: false,
+                    comments: false,
+                },
+            }),
+            new OptimizeCSSAssetsPlugin({
+                cssProcessor: require("cssnano"),
+                cssProcessorOptions: { discardComments: { removeAll: true } },
+                canPrint: true,
+            }),
+            new OptimizeJsPlugin({ sourceMap: false }),
+        ],
+        runtimeChunk: {
+            name: "manifest",
+        },
         splitChunks: {
             chunks: "async",
             cacheGroups: {
@@ -45,28 +58,13 @@ module.exports = merge(common, {
                 },
             },
         },
-        runtimeChunk: {
-            name: "manifest",
-        },
-        minimizer: [
-            new UglifyJSPlugin({
-                parallel: true,
-                sourceMap: false,
-                uglifyOptions: {
-                    ecma: 8,
-                    ie8: false,
-                },
-            }),
-            new OptimizeJsPlugin({ sourceMap: false }),
-        ],
     },
     plugins: [
         new CleanWebpackPlugin(["dist/*.*"]),
-        new ExtractTextPlugin({
-            filename: getPath => {
-                return getPath("css/[name].css")
-            },
-            allChunks: true,
+        new ExtractCssChunks({
+            filename: "css/[name].css",
+            // chunkFilename: "css/[id].css",
+            // allChunks: true,
         }),
         new CompressionPlugin({
             asset: "[path].gz[query]",

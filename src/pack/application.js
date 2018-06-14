@@ -21,5 +21,3 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 import "../init/index.js"
-
-console.log(Array.from('foo'));
