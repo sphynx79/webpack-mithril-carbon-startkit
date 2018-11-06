@@ -1,14 +1,23 @@
 // src/init/index.scss
 
 @import "./theme.scss";
+$font-path: '~carbon-components/src/globals/fonts';
 @import "~carbon-components/scss/globals/scss/styles";
+
+html {
+  font-size: calc(0.4em + 1vmin);
+  height:100%;
+}
 
 body {
   background-color: #343838;
   color: #FFFFFF;
-  font-size: 16px;
-  margin: 0;
   overflow: hidden;
+  height:100%;
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
 }
 
 ::-webkit-scrollbar {
