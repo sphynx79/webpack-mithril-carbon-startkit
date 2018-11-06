@@ -13,7 +13,7 @@ class Test {
             {
                 class: "title",
             },
-            "My first app"
+            "Mithril StartKit"
         )
     }
 

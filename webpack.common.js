@@ -1,6 +1,6 @@
 const { resolve } = require("path")
 
-var webpack = require("webpack")
+const webpack = require("webpack")
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 
 module.exports = {
@@ -80,6 +80,7 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: "./index.html",
             filename: "./index.html",
+            inject: true,
         }),
         new webpack.ProvidePlugin({
             m: "mithril", //Global access
