@@ -4,7 +4,7 @@ const merge = require("webpack-merge")
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const CleanWebpackPlugin = require("clean-webpack-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
-const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
+const TerserPlugin = require("terser-webpack-plugin")
 const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 
 module.exports = merge(common, {
@@ -41,12 +41,12 @@ module.exports = merge(common, {
             name: "manifest",
         },
         minimizer: [
-            new UglifyJSPlugin({
+            new TerserPlugin({
                 parallel: true,
                 sourceMap: false,
-                uglifyOptions: {
+                extractComments: false,
+                terserOptions: {
                     ecma: 8,
-                    ie8: false,
                 },
             }),
         ],
