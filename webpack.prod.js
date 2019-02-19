@@ -1,11 +1,12 @@
-const common = require("./webpack.common.js")
-const webpack = require("webpack")
 const merge = require("webpack-merge")
+const webpack = require("webpack")
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const CleanWebpackPlugin = require("clean-webpack-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
+const common = require("./webpack.common.js")
+const HtmlWebPackPlugin = require("html-webpack-plugin")
 const TerserPlugin = require("terser-webpack-plugin")
-const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 
 module.exports = merge(common, {
     mode: "production",
@@ -52,8 +53,10 @@ module.exports = merge(common, {
         ],
     },
     plugins: [
-        new webpack.DefinePlugin({
-            NEXT: JSON.stringify(process.env.next),
+        new HtmlWebPackPlugin({
+            template: "./index.html",
+            filename: "./index.html",
+            inject: true,
         }),
         new OptimizeCSSAssetsPlugin({
             cssProcessor: require("cssnano"),

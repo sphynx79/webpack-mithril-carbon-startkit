@@ -3,6 +3,7 @@ const webpack = require("webpack")
 const merge = require("webpack-merge")
 const common = require("./webpack.common.js")
 const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
+const HtmlWebPackPlugin = require("html-webpack-plugin")
 
 module.exports = merge(common, {
     mode: "development",
@@ -43,6 +44,12 @@ module.exports = merge(common, {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebPackPlugin({
+            template: "./index.html",
+            filename: "./index.html",
+            // favicon: './images/favicon.png',
+            // inject: true,
+        }),
         // Ignore node_modules so CPU usage with poll
         // watching drops significantly.
         new webpack.WatchIgnorePlugin([resolve(__dirname, "node_modules")]),

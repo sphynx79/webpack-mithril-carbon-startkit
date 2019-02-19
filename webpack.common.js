@@ -1,7 +1,6 @@
 const { resolve } = require("path")
 
 const webpack = require("webpack")
-const HtmlWebPackPlugin = require("html-webpack-plugin")
 
 module.exports = {
     context: resolve(__dirname, "src"),
@@ -42,7 +41,7 @@ module.exports = {
                 },
             },
             {
-                test: /\.(png|jpg|svg|gif)$/,
+                test: /\.(png|jpg|svg|gif|ico)$/,
                 loader: "file-loader",
                 options: {
                     name: "[name].[ext]",
@@ -77,11 +76,6 @@ module.exports = {
         ],
     },
     plugins: [
-        new HtmlWebPackPlugin({
-            template: "./index.html",
-            filename: "./index.html",
-            inject: true,
-        }),
         new webpack.ProvidePlugin({
             m: "mithril", //Global access
         }),
