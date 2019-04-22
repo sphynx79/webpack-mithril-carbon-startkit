@@ -1,20 +1,19 @@
-// src/components/test/test.js
+// src/components/index/index.js
 
-import "./test.scss"
+import "./index.scss"
+import SampleComponent from "components/sample-component/sample-component.js"
 
-class Test {
+class Index {
     constructor() {
         this._componentName = this.constructor.name
     }
 
     view(vnode) {
-        return m(
-            "h1",
-            {
-                class: "title",
-            },
-            "Mithril StartKit"
-        )
+        return m('main',[
+            m("div.bx--type-semibold", "Congratulations, you made it!"),
+            m("p", "You've spun up your very first Mithril app :-)"),
+            m(SampleComponent)
+        ])
     }
 
     oncreate({ attrs, state }) {
@@ -28,4 +27,4 @@ class Test {
     }
 }
 
-export default Test
+export default Index

@@ -1,0 +1,25 @@
+/* src/components/test/test.scss */
+
+#app{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40%;
+    height: 40%;
+    width: 50%;
+    align-self: center;
+    border: 3px solid #5aaafa;
+}
+
+.sample-component {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    & > button{
+      margin-top: 10px;
+
+    }
+}
+

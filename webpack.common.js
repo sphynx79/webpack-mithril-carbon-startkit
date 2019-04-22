@@ -4,7 +4,7 @@ const webpack = require("webpack")
 
 module.exports = {
     context: resolve(__dirname, "src"),
-    entry: ["babel-polyfill", "./pack/application.js"],
+    entry: ["./pack/application.js"],
     output: {
         path: resolve(__dirname, "dist/"),
         filename: "./js/[name]-bundle.js",
@@ -14,6 +14,8 @@ module.exports = {
         extensions: [".js"],
         alias: {
             components: resolve(__dirname, "src/components"),
+            "mithril/stream": resolve(__dirname, "node_modules/mithril/stream/stream.js"),
+            "mithril": resolve(__dirname, "node_modules/mithril/mithril.js"),
         },
     },
     module: {
@@ -56,18 +58,18 @@ module.exports = {
                     loader: "babel-loader",
                     options: {
                         presets: [
-                            [
-                                "@babel/preset-env",
-                                {
-                                    targets: {
-                                        browsers: ["last 2 versions", "not ie < 11"],
-                                    },
-                                    modules: false,
-                                    debug: false,
-                                    // useBuiltins: "usage",
-                                    // exclude: ["transform-regenerator"],
-                                },
-                            ],
+                          [
+                            "@babel/preset-env",
+                            {
+                              targets: {
+                                browsers: ["last 2 versions", "not ie <= 11"]
+                              },
+                              modules: false,
+                              debug: true,
+                              useBuiltIns: "usage",
+                              corejs: 3,
+                            },
+                          ],
                         ],
                         plugins: ["module:mopt"],
                     },
@@ -81,3 +83,4 @@ module.exports = {
         }),
     ],
 }
+
