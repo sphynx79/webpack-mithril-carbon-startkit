@@ -14,4 +14,13 @@
 //     })(window)
 // }
 
+
+
+
+//
+// IMPORTANTE PER EXPLORER E CARBON COMPONENT
+//
+// vedere se lasciarlo per far funzionare carbon system
+// oppure usare babel polyfill
+// import "../polyfills"
 import "../init/index.js"

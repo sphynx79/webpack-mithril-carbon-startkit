@@ -51,30 +51,7 @@ module.exports = {
                     outputPath: "images/",
                 },
             },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: [
-                          [
-                            "@babel/preset-env",
-                            {
-                              targets: {
-                                browsers: ["last 2 versions", "not ie <= 11"]
-                              },
-                              modules: false,
-                              debug: true,
-                              useBuiltIns: "usage",
-                              corejs: 3,
-                            },
-                          ],
-                        ],
-                        plugins: ["module:mopt"],
-                    },
-                },
-            },
+
         ],
     },
     plugins: [

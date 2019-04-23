@@ -26,17 +26,13 @@ module.exports = merge(common, {
                 test: /(\.css|\.scss)$/,
                 use: [
                     ExtractCssChunks.loader,
-                    {
-                        loader: "css-loader",
+                    { loader: "css-loader", options: { sourceMap: true } },
+                    { loader: "postcss-loader", options: { sourceMap: true } },
+                    { loader: "sass-loader",
                         options: {
-                            sourceMap: true,
+                            includePaths: [resolve(__dirname, "node_modules"), resolve(__dirname, "./src/pack")],
+                            data: '@import "application.scss";',
                         },
-                    },
-                    {
-                        loader: "postcss-loader",
-                    },
-                    {
-                        loader: "sass-loader",
                     },
                 ],
             },
@@ -59,3 +55,4 @@ module.exports = merge(common, {
         }),
     ],
 })
+

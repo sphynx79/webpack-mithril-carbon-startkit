@@ -1,0 +1,27 @@
+/* src/pack/application.scss */
+
+// Qui inserisco tutti gli elementi che voglio
+// siano accessibili da tutti i file scss, esempio i colori
+// e le variabili per lo spacing di Carbon System Design
+// in webpack poi ci metto questo codice per
+// importarli globalmente
+// {
+//   loader: "sass-loader",
+//      options: {
+//        includePaths: [resolve(__dirname, "node_modules"), resolve(__dirname, "./src/pack")],
+//            data: '@import "application.scss";',
+//      },
+// }
+
+$prefix: 'bx' !default;
+
+@import "@carbon/colors/scss/colors";
+@import "@carbon/layout/scss/layout";
+@import "@carbon/themes/scss/themes";
+@import '@carbon/type/scss/styles';
+// Grid-specific import
+// See https://github.com/IBM/carbon-elements/blob/master/packages/grid/README.md
+// @import '@carbon/grid/scss/grid';
+// Grid-specific layout
+// See https://github.com/IBM/carbon-elements/blob/master/packages/layout/README.md
+// @import '@carbon/layout/scss/layout';

@@ -1,13 +1,14 @@
 // src/components/test/test.js
 
 import "./sample-component.scss"
+import { Checkbox } from "carbon-components"
 
 class SampleComponent {
     constructor() {
         this._componentName = this.constructor.name
     }
 
-    oninit({state}) {
+    oninit({ state }) {
         state.count = 0
     }
 
@@ -22,14 +23,17 @@ class SampleComponent {
                 },
                 "clicks"
             ),
+            m("div.bx--form-item", [m("input.bx--checkbox[id='bx--checkbox'][type='checkbox'][value='green'][name='checkbox']"), m("label.bx--checkbox-label[for='bx--checkbox']", "Checkbox")]),
         ])
     }
 
-    oncreate({ attrs, state }) {
+    oncreate(vnode) {
+        let checkboxInstance = Checkbox.create(vnode.dom.children[2].firstElementChild)
+        checkboxInstance.setState('false')
         if (process.env.NODE_ENV !== "production") {
             let logStateAttrs = {
-                attrs: attrs,
-                state: state,
+                attrs: vnode.attrs,
+                state: vnode.state,
             }
             console.log(`Component: ${this._componentName}`, logStateAttrs)
         }

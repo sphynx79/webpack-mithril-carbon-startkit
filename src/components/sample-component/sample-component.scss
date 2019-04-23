@@ -4,11 +4,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40%;
+    flex-direction: column;
     height: 40%;
     width: 50%;
     align-self: center;
-    border: 3px solid #5aaafa;
+    border: 3px solid $carbon--blue-50;
 }
 
 .sample-component {
@@ -21,5 +21,10 @@
       margin-top: 10px;
 
     }
+    & > .bx--form-item {
+        align-self: flex-start;
+        margin-top: $spacing-04;
+        color: $ui-01;
+      }
 }
 
