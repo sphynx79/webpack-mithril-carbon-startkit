@@ -15,7 +15,7 @@ module.exports = {
         alias: {
             components: resolve(__dirname, "src/components"),
             "mithril/stream": resolve(__dirname, "node_modules/mithril/stream/stream.js"),
-            "mithril": resolve(__dirname, "node_modules/mithril/mithril.js"),
+            mithril: resolve(__dirname, "node_modules/mithril/mithril.js"),
         },
     },
     module: {
@@ -51,7 +51,6 @@ module.exports = {
                     outputPath: "images/",
                 },
             },
-
         ],
     },
     plugins: [
@@ -60,4 +59,3 @@ module.exports = {
         }),
     ],
 }
-

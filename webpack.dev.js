@@ -25,10 +25,17 @@ module.exports = merge(common, {
             {
                 test: /(\.css|\.scss)$/,
                 use: [
-                    ExtractCssChunks.loader,
+                    {
+                        loader: ExtractCssChunks.loader,
+                        options: {
+                            hot: true,
+                            reloadAll: false,
+                        },
+                    },
                     { loader: "css-loader", options: { sourceMap: true } },
                     { loader: "postcss-loader", options: { sourceMap: true } },
-                    { loader: "sass-loader",
+                    {
+                        loader: "sass-loader",
                         options: {
                             includePaths: [resolve(__dirname, "node_modules"), resolve(__dirname, "./src/pack")],
                             data: '@import "application.scss";',
@@ -39,6 +46,9 @@ module.exports = merge(common, {
         ],
     },
     plugins: [
+        new webpack.optimize.LimitChunkCountPlugin({
+            maxChunks: 1,
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebPackPlugin({
             template: "./index.html",
@@ -55,4 +65,3 @@ module.exports = merge(common, {
         }),
     ],
 })
-
