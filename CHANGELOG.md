@@ -1,3 +1,9 @@
+## 2.1.0 (2019-04-29)
+### Changed
+-  Aggiornato per farlo funzionare con node 12  ( 2019-04-29 ) [ sphynx79]
+
+
+
 ## 2.0.1 (2019-04-28)
 ### Changed
 -  Aggiornato varie librerie + fatto alcune ottimizzazioni  ( 2019-04-28 ) [ sphynx79]
