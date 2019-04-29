@@ -7,7 +7,7 @@
     "license": "MIT",
     "engineStrict": true,
     "engines": {
-        "node": "^11.14.0"
+        "node": "^12.0.0"
     },
     "scripts": {
         "start": "nodemon --watch  webpack.dev.js --watch webpack.common.js --exec \"webpack-dev-server --colors --progress --config webpack.dev.js\"",
